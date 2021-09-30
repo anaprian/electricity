@@ -192,8 +192,18 @@ h3 {
 
 }
 .producto__nombre{
+    font-size: 2rem;
 
 }
 .producto__precio{
+    font-size: 1.8rem;
+    color: var(--azulmarino);
 
+}
+.producto__nombre,
+.producto__precio{
+    font-family: var(--fuentePrincipal);
+    margin: 1rem 0;
+    text-align: center;
+    line-height: 1.2;
 }
