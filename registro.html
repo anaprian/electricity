@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Registro</title>
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html">
+            <img class="header__logo" src="img/logochido.JPG" alt="Logo">
+        </a>
+    </header>
+    <nav class="navegacion">
+        <!--Los guiones bajos para los elementos, los guiones para los modificadores-->
+        <a class="navegacion__enlace" href="index.html">Inicio</a>
+        <a class="navegacion__enlace" href="tienda.html">Tienda</a>
+        <a class="navegacion__enlace" href="iniciosesion.html">Iniciar sesión</a>
+        <a class="navegacion__enlace navegacion__enlace--activo"" href="registro.html">Regístrate</a>
+        <a class="navegacion__enlace" href="carrito.html">Carrito</a>
+    </nav>
+
+    <main class="contenedor">
+        <h1>Regístrate</h1>
+    </main>
+    <section class="formulario">
+        <input class="control" type="text" name="nombre" id="nombre" placeholder="Nombre">
+        <input class="control" type="text" name="apellidoPaterno" id="apellidoPaterno" placeholder="Apellido Paterno">
+        <input class="control" type="text" name="apellidoMaterno" id="apellidoMaterno" placeholder="Apellido Materno">
+        <input class="control" type="email" name="correo" id="correo" placeholder="Correo">
+        <input class="control" type="text" name="nombreUsuario" id="nombreUsuario" placeholder="Nombre de usuario">
+        <input class="control" type="password" name="contrasena" id="contrasena" placeholder="Clave">
+        <label for="avatar">Elige una foto de perfil:</label>
+        <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg">
+        <button class="boton" type="submit">Registrarme</button>
+        <p><a href="iniciosesion.html">¿Ya tienes una cuenta? Inicia sesión</a></p>
+    </section>
+    <footer class="footer">
+        <p class="footer__texto">ElectriCity- Todos los derechos reservados 2022.</p>
+    </footer>
+</body>
+</html>

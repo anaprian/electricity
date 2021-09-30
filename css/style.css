@@ -1,0 +1,169 @@
+:root {
+    --secundario: #424874;
+    --azulmarino: #14279B;
+    --moradoClaro: #AD62AA;
+    --gris: #DCD6F7;
+    --blanco: #FFF;
+    --negro: #000;
+    --boton: #A6B1E1;
+    --fuentePrincipal: 'Staatliches', cursive;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+
+/*Globales*/
+
+body {
+    background-color: var(--blanco);
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+
+p {
+    font-size: 1.6rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--negro);
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+.contenedor {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+    color: var(--secundario);
+    font-family: var(--fuentePrincipal);
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3.2rem;
+}
+
+h3 {
+    font-size: 2.4rem;
+}
+
+
+/*Header*/
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.header__logo {
+    /*Arriba abajo el primer valor, izquierda derecha el segundo*/
+    margin: 3rem 0;
+}
+
+
+/*Footer*/
+
+.footer {
+    background-color: var(--azulmarino);
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+.footer__texto {
+    text-align: center;
+    font-family: var(--fuentePrincipal);
+    font-size: 2.2rem;
+    color: var(--gris);
+}
+
+.navegacion {
+    background-color: var(--azulmarino);
+    /*Arriba abajo el primer valor, izquierda derecha el segundo*/
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.navegacion__enlace {
+    font-family: var(--fuentePrincipal);
+    color: var(--gris);
+    font-size: 3rem;
+}
+
+.navegacion__enlace--activo,
+.navegacion__enlace:hover {
+    color: var(--moradoClaro);
+}
+
+.formulario {
+    width: 40rem;
+    background: var(--secundario);
+    padding: 3rem;
+    margin: auto;
+    margin-top: 1rem;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    color: var(--negro)
+}
+
+.control {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.6rem;
+    border: 1px solid;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.8rem;
+}
+
+.formulario p {
+    height: 4rem;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.formulario a {
+    color: var(--blanco);
+}
+
+.formulario a:hover {
+    color: var(--negro);
+    text-decoration: underline;
+}
+
+.formulario .boton {
+    width: 100%;
+    border: none;
+    background: var(--boton);
+    padding: 1.2rem;
+    color: var(--negro);
+    margin: 1.6rem 0;
+    font-size: 1.6rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}

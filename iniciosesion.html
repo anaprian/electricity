@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Iniciar sesión</title>
+</head>
+<body>
+    <header class="header">
+        <a href="index.html">
+            <img class="header__logo" src="img/logochido.JPG" alt="Logo">
+        </a>
+    </header>
+    <nav class="navegacion">
+        <!--Los guines bajos para los elementos, los guiones para los modificadores-->
+        <a class="navegacion__enlace" href="index.html">Inicio</a>
+        <a class="navegacion__enlace" href="tienda.html">Tienda</a>
+        <a class="navegacion__enlace navegacion__enlace--activo" href="iniciosesion.html">Iniciar sesión</a>
+        <a class="navegacion__enlace" href="registro.html">Regístrate</a>
+        <a class="navegacion__enlace" href="carrito.html">Carrito</a>
+    </nav>
+    <main class="contenedor">
+        <h1>Iniciar sesión</h1>
+    </main>
+    <section class="formulario">
+        <input class="control" type="text" name="nombreUsuario" id="nombreUsuario" placeholder="Nombre de usuario">
+        <input class="control" type="password" name="contrasena" id="contrasena" placeholder="Clave">
+        <button class="boton" type="submit">Ingresar</button>
+        <p><a href="registro.html">¿No tienes una cuenta? Regístrate</a></p>
+    </section>
+    <footer class="footer">
+        <p class="footer__texto">ElectriCity- Todos los derechos reservados 2022.</p>
+    </footer>
+</body>
+</html>
