@@ -62,11 +62,18 @@ transition:all .1s linear;
 .main-menu .nav-icon {
 position:relative;
 display:table-cell;
-width:60px;
-height:36px;
+width:30px;
+height:30px;
 text-align:center;
 vertical-align:middle;
+margin-left: 10px;
 font-size:18px;
+margin-block-end: 40px;
+margin-block-start: 40px;
+  border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
 }
 
 .main-menu .nav-text {
