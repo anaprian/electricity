@@ -210,3 +210,53 @@ h3 {
     text-align: center;
     line-height: 1.2;
 }
+/**Pagina del producto**/
+@media (min-width:768px) {
+   
+    .caja{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
+
+}
+
+.form{
+    display: grid;
+    gap: 2rem;
+
+}
+.formulario__campo{
+   /** border-color: var(--azulmarino);
+    border-width: 1rem;
+    border-style: solid;**/
+    border: 1rem solid var(--azulmarino);
+    background-color: transparent;
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1rem;
+    margin-top: 10rem;
+
+}
+.formulario__submit{
+    background-color: var(--boton);
+    border: none;
+    font-size: 2rem;
+    font-family: var(--fuentePrincipal);
+    padding: 2rem;
+    transition: background-color .3s ease;
+
+}
+.formulario__submit:hover{
+    cursor: pointer;
+    background-color: var(--moradoClaro);
+}
+
+.caja__contenido p{
+    margin-top: 10rem;
+    height: 4rem;
+    text-align: center;
+    font-size: 2.8rem;
+    font-family: var(--fuentePrincipal);
+
+}
