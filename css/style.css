@@ -40,7 +40,7 @@ a {
 }
 
 img {
-    max-width: 100%;
+    width: 100%;
 }
 
 .contenedor {
@@ -189,10 +189,6 @@ h3 {
 .producto{
     background: var(--gris);
     padding: 1rem;
-
-}
-.producto__imagen{
-    width: 100%;
 
 }
 .prodcuto__informacion{
