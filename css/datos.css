@@ -1,0 +1,13 @@
+.datos{
+    width: 525px;
+    font-weight: 700;
+    margin: 60px auto 0;
+    line-height: 2.2;
+    margin: 20px 0 0;
+    align-content: center;
+}
+
+span.text{
+    align-content: center;
+    font-weight: 700;
+}
