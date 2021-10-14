@@ -257,3 +257,13 @@ h3 {
     font-family: var(--fuentePrincipal);
 
 }
+.formulario__busqueda{
+    border: 1rem solid var(--azulmarino);
+    background-color: transparent;
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+
+}
