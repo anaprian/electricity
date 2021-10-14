@@ -223,6 +223,12 @@ h3 {
     gap: 2rem;
 
 }
+.formcarrito{
+    display: grid;
+    gap: 2rem;
+    margin-top: 10rem;
+
+}
 .formulario__campo{
    /** border-color: var(--azulmarino);
     border-width: 1rem;
@@ -266,4 +272,10 @@ h3 {
     margin-top: 1rem;
     margin-bottom: 3rem;
 
+}
+.descripcion{
+    margin-top: 5rem;
+    font-family: (--fuentePrincipal);
+    color: var(--negro);
+    font-weight: lighter;
 }
