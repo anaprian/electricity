@@ -18,7 +18,7 @@
             <img class="header__logo" src="img/logochido.JPG" alt="Logo">
         </a>
     </header>
-    <nav class="navegacion">
+    <nav id="navMenu" class="navegacion">
         <!--Los guiones bajos para los elementos, los guiones para los modificadores-->
         <a class="navegacion__enlace" href="index.html">Artículos</a>
         <a class="navegacion__enlace" href="iniciosesion.html">Iniciar sesión</a>
@@ -37,7 +37,24 @@
                   let queryResults = window.location.search;
                   console.log(queryResults);
                   let urlParams = new URLSearchParams(queryResults);
-                  let idusuario = urlParams.get('IdUsuarioAlm');
+                  let idusuario = urlParams.get('IdUsuario');
+                  let idtipousuario = urlParams.get('IdTipoUsuario');
+                  if(idtipousuario==='1')
+                {
+                    console.log("Entrando como cliente")
+                    var etiqueta = document.createElement("a");
+                    etiqueta.setAttribute("class", "navegacion__enlace");
+                    etiqueta.setAttribute("href",`cuentaCliente.html?IdUsuario=${idusuario}&IdTipoUsuario=${idtipousuario}`);
+                    var contenido = document.createTextNode("Cuenta");
+                    etiqueta.appendChild(contenido);
+                    var contenedor = document.getElementById("navMenu");
+                    contenedor.appendChild(etiqueta);
+                   
+                }
+                  // let arrayDatos = {
+                  //     idusuario : idusuario
+
+                  // };
                   const url = `http://192.168.191.77:5000/getInfoUser/`;
 
                       axios ({
@@ -119,7 +136,7 @@
                 let queryResults = window.location.search;
                   console.log(queryResults);
                   let urlParams = new URLSearchParams(queryResults);
-                  let idusuario = urlParams.get('IdUsuarioAlm');
+                  let idusuario = urlParams.get('IdUsuario');
                   let idtipousuario = urlParams.get('IdTipoUsuario');
                 let nombre = document.getElementById('nombre').value;
                 let apellidos = document.getElementById('apellidos').value;
@@ -146,7 +163,7 @@
                 })
                 .then (res=>{
                     console.log(res.data);
-                    location.href=`Empleados.html?IdUsuario=47&IdTipoUsuario=2`;
+                    location.href=`cuentaCliente.html?IdUsuario=${res.data.IdUsuario}&IdTipoUsuario=${res.data.IdTipoUsuario}`;
                 })
                 .catch (error=>{
                     console.error(error);

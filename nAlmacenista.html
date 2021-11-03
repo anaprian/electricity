@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/datos.css">
+    <link rel="stylesheet" href="css/perfiles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <title>ElectriCity</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/formularios.css">
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <main class="contenedor">
+        <h1>Datos del empleado</h1>
+        <div class="contenido">
+          <div class="caja__contenido">
+                <div class="datos">
+                    <section class="formulario">
+                        <input class="control" type="text" name="nombre" id="nombre" placeholder="Nombre"> <br>
+                        <input class="control" type="text" name="apellidoPaterno" id="apellidoPaterno" placeholder="Apellido Paterno"> <br>
+                        <input class="control" type="text" name="apellidoMaterno" id="apellidoMaterno" placeholder="Apellido Materno"> <br>
+                        <input class="control" type="email" name="correo" id="correo" placeholder="Correo"> <br>
+                        <input class="control" type="text" name="nombreUsuario" id="nombreUsuario" placeholder="Nombre de usuario"><br>
+                        <input class="control" type="password" name="contrasena" id="contrasena" placeholder="Clave"> <br>
+                        <label for="avatar">Elige una foto de perfil:</label>
+                        <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg">
+                        <button class="boton" type="button" onclick="RegisterUser()">Registrar</button>
+                        <script>
+                            function RegisterUser()
+                                {
+                                    let nombre = document.getElementById('nombre').value;
+                                    let apPaterno = document.getElementById('apellidoPaterno').value;
+                                    let apMaterno = document.getElementById('apellidoMaterno').value;
+                                    let correo = document.getElementById('correo').value;
+                                    let username = document.getElementById('nombreUsuario').value;
+                                    let password = document.getElementById('contrasena').value;
+                                    let arrayDatos = {
+                                        Nombre: nombre = document.getElementById('nombre').value,
+                                        Apellido: apPaterno = document.getElementById('apellidoPaterno').value +
+                                         " " + document.getElementById('apellidoMaterno').value,
+                                        Correo: correo = document.getElementById('correo').value,
+                                        IdTipoUsuario: "3",
+                                        NombreUsuario: username = document.getElementById('nombreUsuario').value,
+                                        Contrasena: password = document.getElementById('contrasena').value,
+                                        Imagen:"ing.jpg"
+                                    };
+                                    const url = `http://192.168.191.77:5000/registerUser/`;
+                    
+                                        axios ({
+                                        method: 'post',
+                                        url: url,
+                                        reponseType: 'json',
+                                        data: arrayDatos
+                                        
+                                    })
+                                    .then (res=>{
+                                        console.log(res.data);
+                                        location.href="Empleados.html?IdUsuario=47&IdTipoUsuario=2";
+                                    })
+                                    .catch (error=>{
+                                        console.error(error);
+                                    });
+                                }
+                            </script>
+                    </section>
+            </div>
+        </div>
+    </main>
+    <body>
+        <div class="area"></div><nav class="main-menu">
+              <ul>
+                <body onload="backHome()">
+                    <div class="area"></div><nav class="main-menu">
+                          <ul>
+                            <li>
+                                <a href="cuentaAdmin.html?IdUsuario=47&IdTipoUsuario=2">
+                                  <img class="circular--square" src="img/logochido.JPG" width="50px" height="50px" alt="">
+                                    <i class="fa fa-home fa-2x"></i>
+                                    <span class="nav-text">
+                                        Mi cuenta
+                                    </span>
+                                </a>
+                              
+                            </li>
+                              <script>
+                                function backHome()
+                                {
+                                  const queryResults = window.location.search;
+                                  console.log(queryResults);
+                                  const urlParams = new URLSearchParams(queryResults);
+                                  const idtipousuario = urlParams.get('idtipousuario');
+                                  const idusuario = urlParams.get('idUsuario');
+                                  ///boton de home
+                                  var etiquetaA = document.createElement("a");
+                                  etiquetaA.setAttribute("id", "cont-Ispan");
+                                  etiquetaA.setAttribute("href", `index.html?idUsuario=${idusuario}&idtipousuario=${idtipousuario}`);
+                                  var contenedor = document.getElementById("cont-bh");
+                                  contenedor.appendChild(etiquetaA);
+                                  var etiquetaImg = document.createElement("img");
+                                  etiquetaImg.setAttribute("class", "nav-icon");
+                                  etiquetaImg.setAttribute("src", "img/logos/home.png");
+                                  etiquetaImg.setAttribute("width", "40px");
+                                  etiquetaImg.setAttribute("height", "40px");
+                                  etiquetaImg.setAttribute("alt", "");
+                                  var contenedor = document.getElementById("cont-Ispan");
+                                  contenedor.appendChild(etiquetaImg);
+                                  var etiqueta = document.createElement("i");
+                                  etiqueta.setAttribute("class", "fa fa-laptop fa-2x");
+                                  var contenido = document.createTextNode("");
+                                  etiqueta.appendChild(contenido);
+                                  var contenedor = document.getElementById("cont-Ispan");
+                                  contenedor.appendChild(etiqueta);
+                                  var etiqueta = document.createElement("span");
+                                  etiqueta.setAttribute("class", "nav-text");
+                                  var contenido = document.createTextNode("Tienda");
+                                  etiqueta.appendChild(contenido);
+                                  var contenedor = document.getElementById("cont-Ispan");
+                                  contenedor.appendChild(etiqueta);
+                
+                                  ////Boton para agregar un nuevo almacenista
+                                  var etiquetaA = document.createElement("a");
+                                  etiquetaA.setAttribute("id", "cont-alm");
+                                  etiquetaA.setAttribute("href", "nAlmacenista.html");
+                                  var contenedor = document.getElementById("add");
+                                  contenedor.appendChild(etiquetaA);
+                                  var etiquetaImg = document.createElement("img");
+                                  etiquetaImg.setAttribute("class", "nav-icon");
+                                  etiquetaImg.setAttribute("src", "img/logos/agregar.png");
+                                  etiquetaImg.setAttribute("width", "40px");
+                                  etiquetaImg.setAttribute("height", "40px");
+                                  etiquetaImg.setAttribute("alt", "");
+                                  var contenedor = document.getElementById("cont-alm");
+                                  contenedor.appendChild(etiquetaImg);
+                                  var etiqueta = document.createElement("i");
+                                  etiqueta.setAttribute("class", "fa fa-laptop fa-2x");
+                                  var contenido = document.createTextNode("");
+                                  etiqueta.appendChild(contenido);
+                                  var contenedor = document.getElementById("cont-alm");
+                                  contenedor.appendChild(etiqueta);
+                                  var etiqueta = document.createElement("span");
+                                  etiqueta.setAttribute("class", "nav-text");
+                                  var contenido = document.createTextNode("Agregar Almacenista");
+                                  etiqueta.appendChild(contenido);
+                                  var contenedor = document.getElementById("cont-alm");
+                                  contenedor.appendChild(etiqueta);
+                                }
+                              </script>
+                              <li id="cont-bh" class="has-subnav">
+                                    
+                            </li>
+                            <li id="add" class="has-subnav">
+                                    
+                            </li>
+                </li>
+                <li class="has-subnav">
+                    <a href="Empleados.html">
+                      <img class="nav-icon" src="img/logos/empleado.png" width="40px" height="40px" alt="">
+                        <i class="fa fa-laptop fa-2x"></i>
+                        <span class="nav-text">
+                        Almacenistas  
+                        </span>
+                    </a>
+                    
+                </li>
+  
+              <li class="logout">
+                     <a href="iniciosesion.html">
+                      <img class="nav-icon" src="img/logos/logout.png" alt="">
+                           <i class="fa fa-power-off fa-2x"></i>
+                          <span class="nav-text">
+                              Logout
+                          </span>
+                      </a>
+                </li>
+          </nav>
+    </body>
+    <footer class="footer">
+        <p class="footer__texto">ElectriCity- Todos los derechos reservados 2022.</p>
+    </footer>
+</body>
+</html>

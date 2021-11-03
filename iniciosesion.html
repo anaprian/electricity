@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,9 +7,11 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
     <title>Iniciar sesión</title>
 </head>
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <header class="header">
         <a href="index.html">
             <img class="header__logo" src="img/logochido.JPG" alt="Logo">
@@ -29,7 +30,40 @@
     <section class="formulario">
         <input class="control" type="text" name="nombreUsuario" id="nombreUsuario" placeholder="Nombre de usuario">
         <input class="control" type="password" name="contrasena" id="contrasena" placeholder="Clave">
-        <button class="boton" type="submit" onclick="location.href='cuentaCliente.html'">Ingresar</button>
+        <button class="boton" type="button" onclick="CheckLogin()">Ingresar</button>
+        <script>
+        function CheckLogin()
+            {
+                let username = document.getElementById('nombreUsuario').value;
+                let password = document.getElementById('contrasena').value;
+                console.log(username);
+                console.log(password);
+                let arrayDatos = {
+                    nombreusuario: username = document.getElementById('nombreUsuario').value,
+                    contrasena: password = document.getElementById('contrasena').value
+                };
+                const url = `http://192.168.191.77:5000/loginUser/`;
+
+                    axios ({
+                    method: 'post',
+                    url: url,
+                    reponseType: 'json',
+                    data: arrayDatos
+
+                })
+                .then (res=>{
+                    console.log(res.data);
+                    window.localStorage.setItem('IdUsuario', res.data.IdUsuario);
+                    window.localStorage.setItem('IdTipoUsuario', res.data.IdTipoUsuario);
+                    console.log(res.data.IdUsuario);
+                    console.log(res.data.IdTipoUsuario);
+                    location.href=`index.html?IdUsuario=${res.data.IdUsuario}&IdTipoUsuario=${res.data.IdTipoUsuario}`;
+                })
+                .catch (error=>{
+                    console.error(error);
+                });
+            }
+        </script>
         <p><a href="registro.html">¿No tienes una cuenta? Regístrate</a></p>
     </section>
     <footer class="footer">

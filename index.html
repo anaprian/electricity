@@ -9,7 +9,7 @@
     <title>ElectriCity</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body onload="SelectUser()">
     <header class="header">
         <a href="index.html">
             <img class="header__logo" src="img/logochido.JPG" alt="Logo">
@@ -20,12 +20,60 @@
             <input class="formulario__busqueda" type="search" placeholder="Búsqueda de artículos">
         </form>
     </div>
-    <nav class="navegacion">
+    <nav id="navMenu" class="navegacion">
         <!--Los guiones bajos para los elementos, los guiones para los modificadores-->
         <a class="navegacion__enlace navegacion__enlace--activo" href="index.html">Artículos</a>
         <a class="navegacion__enlace" href="iniciosesion.html">Iniciar sesión</a>
         <a class="navegacion__enlace" href="registro.html ">Regístrate</a>
         <a class="navegacion__enlace" href="carrito.html">Carrito</a>
+        <script>
+            function SelectUser()
+            {
+                const queryResults = window.location.search;
+                console.log(queryResults);
+                const urlParams = new URLSearchParams(queryResults);
+                const idtipousuario = urlParams.get('IdTipoUsuario');
+                const idusuario = urlParams.get('IdUsuario');
+                console.log(idtipousuario);
+                if(idtipousuario==='1')
+                {
+                    console.log("Entrando como cliente")
+                    var etiqueta = document.createElement("a");
+                    etiqueta.setAttribute("class", "navegacion__enlace");
+                    etiqueta.setAttribute("href",`cuentaCliente.html?IdUsuario=${idusuario}&IdTipoUsuario=${idtipousuario}`);
+                    var contenido = document.createTextNode("Cuenta");
+                    etiqueta.appendChild(contenido);
+                    var contenedor = document.getElementById("navMenu");
+                    contenedor.appendChild(etiqueta);
+                   
+                }
+                if(idtipousuario==='2')
+                {
+                    console.log("Entrando como Admin")
+                    var etiqueta = document.createElement("a");
+                    etiqueta.setAttribute("class", "navegacion__enlace");
+                    etiqueta.setAttribute("href",`cuentaAdmin.html?IdUsuario=${idusuario}&IdTipoUsuario=${idtipousuario}`);
+                    var contenido = document.createTextNode("Cuenta");
+                    etiqueta.appendChild(contenido);
+                    var contenedor = document.getElementById("navMenu");
+                    contenedor.appendChild(etiqueta);
+                    
+                }
+                if(idtipousuario==='3')
+                {
+                    console.log("Entrando como Almac")
+                    var etiqueta = document.createElement("a");
+                    etiqueta.setAttribute("class", "navegacion__enlace");
+                    etiqueta.setAttribute("href",`cuentaAlmacenista.html?IdUsuario=${idusuario}&IdTipoUsuario=${idtipousuario}`);
+                    var contenido = document.createTextNode("Cuenta");
+                    etiqueta.appendChild(contenido);
+                    var contenedor = document.getElementById("navMenu");
+                    contenedor.appendChild(etiqueta);
+                    
+                }
+            }
+        </script>
+        
     </nav>
     <main class="contenedor">
         <h1>Nuestros Productos</h1>

@@ -15,73 +15,288 @@
     <meta name="generator" content="Nicepage 3.26.0, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
 </head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <section class="u-align-center u-clearfix u-white u-section-1" id="carousel_e646">
      
         <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
-          <div class="u-gutter-0 u-layout">
+          <div id="container-p" class="u-gutter-0 u-layout">
             <div class="u-layout-col">
               <div class="u-align-center u-container-style u-layout-cell u-size-20 u-layout-cell-3">
                 <div class="u-container-layout u-valign-middle u-container-layout-1">
                   <img class="circular--square" src="img/logochido.JPG" width="200px" height="200px" alt="">
               </div>
-                <div class="u-container-layout u-container-layout-3">
-                  <p class="u-text u-text-7">
-                    <span style="font-weight: 700;">Nombre: </span>
-                    Layla
-                    <br>
-                    <span style="font-weight: 700;">Apellido Paterno: </span>
-                    Montes<br>
-                    <span style="font-weight: 700;">Apellido Materno: </span>
-                    Flores<br>
-                    <span style="font-weight: 700;">Correo: </span>
-                    laylamontes09@gmail.com<br>
-                    <span style="font-weight: 700;">Nombre de usuario: </span>
-                    laymonf<br>
-                    <span style="font-weight: 700;">contraseña: </span>
-                    *****<br>
-                  </p>
+              <script>
+                function getInfo()
+                {
+                  let queryResults = window.location.search;
+                  console.log(queryResults);
+                  let urlParams = new URLSearchParams(queryResults);
+                  let idusuario = urlParams.get('IdUsuario');
+                  
+                  const url = `http://192.168.191.77:5000/getInfoUser/`;
+
+                      axios ({
+                      method: 'GET',
+                      url: url + `${idusuario}`, 
+                      reponseType: 'json',
+                      //data: arrayDatos
+
+                  })
+                  .then (res=>{
+                      console.log(res.data);
+                      id=res.data.idusuario;
+                      //Etiqueta
+                      var etiqueta = document.createElement("span");
+                      etiqueta.setAttribute("style", "font-weight: 700;");
+                      var contenido = document.createTextNode("Nombre:");
+                      etiqueta.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta);
+                      //Valor
+                      var etiqueta = document.createElement("span");
+                      var contenido = document.createTextNode(`${res.data.Nombre}`);
+                      etiqueta.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta);
+                      ////
+                      var etiqueta1 = document.createElement("br");
+                      var contenido = document.createTextNode("");
+                      etiqueta1.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta1);
+                      //Etiqueta
+                      var etiqueta = document.createElement("span");
+                      etiqueta.setAttribute("style", "font-weight: 700;");
+                      var contenido = document.createTextNode("Apellidos:");
+                      etiqueta.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta);
+                      //Valor
+                      var etiqueta = document.createElement("span");
+                      var contenido = document.createTextNode(`${res.data.Apellido}`);
+                      etiqueta.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta);
+                      ///
+                      var etiqueta1 = document.createElement("br");
+                      var contenido = document.createTextNode("");
+                      etiqueta1.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta1);
+                      //Etiqueta
+                      var etiqueta = document.createElement("span");
+                      etiqueta.setAttribute("style", "font-weight: 700;");
+                      var contenido = document.createTextNode("Correo:");
+                      etiqueta.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta);
+                      //Valor
+                      var etiqueta = document.createElement("span");
+                      var contenido = document.createTextNode(`${res.data.Correo}`);
+                      etiqueta.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta);
+                      ///
+                      var etiqueta1 = document.createElement("br");
+                      var contenido = document.createTextNode("");
+                      etiqueta1.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta1);
+                      //Etiqueta
+                      var etiqueta = document.createElement("span");
+                      etiqueta.setAttribute("style", "font-weight: 700;");
+                      var contenido = document.createTextNode("Nombre de usuario:");
+                      etiqueta.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta);
+                      //Valor
+                      var etiqueta = document.createElement("span");
+                      var contenido = document.createTextNode(`${res.data.NombreUsuario}`);
+                      etiqueta.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta);
+                      ///
+                      var etiqueta1 = document.createElement("br");
+                      var contenido = document.createTextNode("");
+                      etiqueta1.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta1);
+                      //Etiqueta
+                      var etiqueta = document.createElement("span");
+                      etiqueta.setAttribute("style", "font-weight: 700;");
+                      var contenido = document.createTextNode("Contraseña:");
+                      etiqueta.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta);
+                      //Valor
+                      var etiqueta = document.createElement("span");
+                      var contenido = document.createTextNode(`${res.data.Contrasena}`);
+                      etiqueta.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta);
+                      ///
+                      var etiqueta1 = document.createElement("br");
+                      var contenido = document.createTextNode("");
+                      etiqueta1.appendChild(contenido);
+                      var contenedor = document.getElementById("container-datos");
+                      contenedor.appendChild(etiqueta1);
+                      // ///boton
+                      // var botonMod = document.createElement("input");
+                      // botonMod.setAttribute("id", "btnM");
+                      // botonMod.setAttribute("class", "btn");
+                      // botonMod.setAttribute("type", "button");
+                      // botonMod.setAttribute("onclick", "changeform()");
+                      // botonMod.setAttribute("value", "Modificar perfil");
+                      // var contenido = document.createTextNode("Modificar perfil");
+                      // botonMod.appendChild(contenido);
+                      // var contenedor = document.getElementById("container-p");
+                      // contenedor.appendChild(botonMod);
+                      // var botonMod = document.createElement("input");
+                      // botonMod.setAttribute("id", "btnM");
+                      // botonMod.setAttribute("class", "btn");
+                      // botonMod.setAttribute("type", "button");
+                      // botonMod.setAttribute("onclick", "deleteUser()");
+                      // botonMod.setAttribute("value", "Eliminar cuenta");
+                      // var contenido = document.createTextNode("Eliminar cuenta");
+                      // botonMod.appendChild(contenido);
+                      // var contenedor = document.getElementById("container-p");
+                      // contenedor.appendChild(botonMod);
+                      backHome();
+                  })
+                  .catch (error=>{
+                      console.error(error);
+                  });
+                }
+                function changeform()
+                {
+                  let queryResults = window.location.search;
+                  console.log(queryResults);
+                  let urlParams = new URLSearchParams(queryResults);
+                  let idusuario = urlParams.get('IdUsuario');
+                  let idtipousuario = urlParams.get('IdTipoUsuario');
+                  location.href=`modificarInfoClnt.html?IdUsuario=${idusuario}&IdTipoUsuario=${idtipousuario}`;
+                }
+                function deleteUser()
+                {
+                  let queryResults = window.location.search;
+                  console.log(queryResults);
+                  let urlParams = new URLSearchParams(queryResults);
+                  let idusuario = urlParams.get('IdUsuario');
+                  
+                  const url = `http://192.168.191.77:5000/deleteAnUser/`;
+
+                    axios ({
+                    method: 'delete',
+                    url: url + `${idusuario}`,
+                    reponseType: 'json',
+                    //data: arrayDatos
+
+                })
+                .then (res=>{
+                    console.log(res.data);
+                    location.href=`index.html`;
+                })
+                .catch (error=>{
+                    console.error(error);
+                });
+                }
+              </script>
+                <div id="container-datos" class="u-container-layout u-container-layout-3">
+                  
                 </div>
               </div>
-            </div>
-            <input class= "btn" type="button" name="" id="" value="Modificar perfil">
-            <input class="btn" type="button" name="" id="" value= "Eliminar cuenta">    
-          </div>
         </div>
+        
       
     </section>
 
-    <body>
+    <body onload="getInfo()">
         <div class="area"></div><nav class="main-menu">
               <ul>
                   <li>
-                      <a href="cuentaAlmacenista.html">
+                      <a href="cuentaCliente.html">
                         <img class="circular--square" src="img/logochido.JPG" width="50px" height="50px" alt="">
                           <i class="fa fa-home fa-2x"></i>
                           <span class="nav-text">
-                              Layla
+                              Mi cuenta
                           </span>
                       </a>
-                    
                   </li>
-                  <li class="has-subnav">
-                      <a href="index.html">
+                  <script>
+                    function backHome()
+                    {
+                      const queryResults = window.location.search;
+                      console.log(queryResults);
+                      const urlParams = new URLSearchParams(queryResults);
+                      const idtipousuario = urlParams.get('IdTipoUsuario');
+                      const idusuario = urlParams.get('IdUsuario');
+                      var etiquetaA = document.createElement("a");
+                      etiquetaA.setAttribute("id", "cont-Ispan");
+                      etiquetaA.setAttribute("href", `index.html?IdUsuario=${idusuario}&IdTipoUsuario=${idtipousuario}`);
+                      var contenedor = document.getElementById("cont-bh");
+                      contenedor.appendChild(etiquetaA);
+                      var etiquetaImg = document.createElement("img");
+                      etiquetaImg.setAttribute("class", "nav-icon");
+                      etiquetaImg.setAttribute("src", "img/logos/home.png");
+                      etiquetaImg.setAttribute("width", "40px");
+                      etiquetaImg.setAttribute("height", "40px");
+                      etiquetaImg.setAttribute("alt", "");
+                      var contenedor = document.getElementById("cont-Ispan");
+                      contenedor.appendChild(etiquetaImg);
+                      var etiqueta = document.createElement("i");
+                      etiqueta.setAttribute("class", "fa fa-laptop fa-2x");
+                      var contenido = document.createTextNode("");
+                      etiqueta.appendChild(contenido);
+                      var contenedor = document.getElementById("cont-Ispan");
+                      contenedor.appendChild(etiqueta);
+                      var etiqueta = document.createElement("span");
+                      etiqueta.setAttribute("class", "nav-text");
+                      var contenido = document.createTextNode("Tienda");
+                      etiqueta.appendChild(contenido);
+                      var contenedor = document.getElementById("cont-Ispan");
+                      contenedor.appendChild(etiqueta);
+                      ///Boton para agregar un nuevo producto
+                      var etiquetaA = document.createElement("a");
+                      etiquetaA.setAttribute("id", "cont-alm");
+                      etiquetaA.setAttribute("href", `nProd.html?IdUsuario=${idusuario}&IdTipoUsuario=${idtipousuario}`);
+                      var contenedor = document.getElementById("add");
+                      contenedor.appendChild(etiquetaA);
+                      var etiquetaImg = document.createElement("img");
+                      etiquetaImg.setAttribute("class", "nav-icon");
+                      etiquetaImg.setAttribute("src", "img/logos/agregar.png");
+                      etiquetaImg.setAttribute("width", "40px");
+                      etiquetaImg.setAttribute("height", "40px");
+                      etiquetaImg.setAttribute("alt", "");
+                      var contenedor = document.getElementById("cont-alm");
+                      contenedor.appendChild(etiquetaImg);
+                      var etiqueta = document.createElement("i");
+                      etiqueta.setAttribute("class", "fa fa-laptop fa-2x");
+                      var contenido = document.createTextNode("");
+                      etiqueta.appendChild(contenido);
+                      var contenedor = document.getElementById("cont-alm");
+                      contenedor.appendChild(etiqueta);
+                      var etiqueta = document.createElement("span");
+                      etiqueta.setAttribute("class", "nav-text");
+                      var contenido = document.createTextNode("Agregar Producto");
+                      etiqueta.appendChild(contenido);
+                      var contenedor = document.getElementById("cont-alm");
+                      contenedor.appendChild(etiqueta);
+                    }
+                  </script>
+                  <li id="cont-bh" class="has-subnav">
+                      <!--<a href="index.html">
                         <img class="nav-icon" src="img/logos/home.png" width="40px" height="40px" alt="">
                           <i class="fa fa-laptop fa-2x"></i>
                           <span class="nav-text">
                           Tienda  
                           </span>
-                      </a>
-                  </li>
-                  <li class="has-subnav">
-                      <a href="Articulos.html">
-                        <img class="nav-icon" src="img/logos/technology.png" width="40px" height="40px" alt="">
-                         <i class="fa fa-list fa-2x"></i>
-                          <span class="nav-text">
-                          Artículos
-                          </span>
-                      </a>
+                      </a>-->
+                      
                   </li>
 
+                  <li id="add" class="has-subnav">
+                    
+                  </li>
   
               <li class="logout">
                      <a href="iniciosesion.html">

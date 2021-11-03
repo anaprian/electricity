@@ -11,41 +11,219 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <section>
-    <div class="grid">
-        <div class="producto">
-            
-                <img class="producto__imagen" src="img/Empleados/empleado1.jpg" alt="">
-                <div class="producto__informacion" >
-                    <p class="producto__nombre">Layla Montes Flores</p>
-                    <p><input class="btn1" type="button" value="editar" onclick="location.href='Empleadoedit.html'"> <input class="btn1" type="button" value="eliminar"></p>   
-                </div>
-            </a>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <div id="grid" class="grid">       
+        
+                <script>
+                function getInfo(){
+                    const url = `http://192.168.191.77:5000/listOfUsers/`;
+                    
+                    axios ({
+                    method: 'GET',
+                    url: url,
+                    reponseType: 'json',                    
+                })
+                .then (res=>{
+                    console.log(res.data);
+                    let contador = 0;
+                    res.data.forEach(element => {
+                        if(element.IdTipoUsuario=='3')
+                        {   console.log("Almacenista encontrado")
+                            contador++;
+                            ///contenedor principal
+                            var etiquetaDiv = document.createElement("div");
+                            etiquetaDiv.setAttribute("class", "producto");
+                            etiquetaDiv.setAttribute("id",`cont-p${contador}`);//
+                            var contenedor = document.getElementById("grid");
+                            contenedor.appendChild(etiquetaDiv);
+
+                            //imagen individual
+                            var etiquetaImg = document.createElement("img");
+                            etiquetaImg.setAttribute("class", "producto__imagen");
+                            etiquetaImg.setAttribute("src", "img/Empleados/guest.webp");
+                            etiquetaImg.setAttribute("alt", "");
+                            var contenedor = document.getElementById(`cont-p${contador}`);
+                            contenedor.appendChild(etiquetaImg);
+                                //contenedor de info y botones
+                            var etiquetaDiv = document.createElement("div");
+                            etiquetaDiv.setAttribute("class", "producto__informacion");
+                            etiquetaDiv.setAttribute("id",`cont-info${contador}`);
+                            var contenedor = document.getElementById(`cont-p${contador}`);
+                            contenedor.appendChild(etiquetaDiv);
+                            ///etiqueta de nombre
+                            var etiquetaP1 = document.createElement("p");
+                            etiquetaP1.setAttribute("class", "producto__nombre");
+                            var contenido = document.createTextNode(`${element.Nombre}`);
+                            etiquetaP1.appendChild(contenido);
+                            var contenedor = document.getElementById(`cont-info${contador}`);
+                            contenedor.appendChild(etiquetaP1);
+                            //contenedor de botones
+                            var etiquetaP1 = document.createElement("p");
+                            etiquetaP1.setAttribute("id", `botones${contador}`);
+                            var contenido = document.createTextNode("");
+                            etiquetaP1.appendChild(contenido);
+                            var contenedor = document.getElementById(`cont-info${contador}`);
+                            contenedor.appendChild(etiquetaP1);
+                            //botones
+                            ///btnMod
+                            var botonMod = document.createElement("button");
+                            botonMod.setAttribute("id", "btnM");
+                            botonMod.setAttribute("class", "btn1");
+                            botonMod.setAttribute("type", "button");
+                            botonMod.setAttribute("textContent", "Modificar");
+                            botonMod.value=element.IdUsuario;
+                            botonMod.setAttribute("onclick", `changeform(${botonMod.value})`);
+                            //botonMod.setAttribute("text", "Modificar");
+                            var contenido = document.createTextNode("Modificar perfil");
+                            botonMod.appendChild(contenido);
+                            var contenedor = document.getElementById(`botones${contador}`);
+                            contenedor.appendChild(botonMod);
+
+                            ///btnEliminar
+                            var botonMod = document.createElement("button");
+                            botonMod.setAttribute("id", "btnM");
+                            botonMod.setAttribute("class", "btn1");
+                            botonMod.setAttribute("type", "button");
+                            // botonMod.setAttribute("onclick", "deleteUser()");
+                            botonMod.setAttribute("textContent", "Eliminar");
+                            botonMod.value=element.IdUsuario;//Asignación del elemento que se desea eliminar
+                            botonMod.setAttribute("onclick", `deleteUser(${botonMod.value})`);
+                            var contenido = document.createTextNode("Eliminar cuenta");
+                            botonMod.appendChild(contenido);
+                            var contenedor = document.getElementById(`botones${contador}`);
+                            contenedor.appendChild(botonMod);
+                        }
+
+                        
+
+                    });
+                    backHome();
+                })
+                .catch (error=>{
+                    console.error(error);
+                });
+                }
+                function changeform(IdUsuarioAlm)
+                {
+                  let queryResults = window.location.search;
+                  console.log(queryResults);
+                  let urlParams = new URLSearchParams(queryResults);
+                  let idusuario = urlParams.get('IdUsuario');
+                  let idtipousuario = urlParams.get('IdTipoUsuario');
+                  location.href=`Empleadoedit.html?IdUsuario=${idusuario}&IdTipoUsuario=${idtipousuario}&IdUsuarioAlm=${IdUsuarioAlm}`;
+                }
+                function deleteUser(IdUsuarioAlm)
+                {
+                  let queryResults = window.location.search;
+                  console.log(queryResults);
+                  let urlParams = new URLSearchParams(queryResults);
+                  let idusuario = urlParams.get('IdUsuario');
+                  
+                  const url = `http://192.168.191.77:5000/deleteAnUser/`;
+
+                    axios ({
+                    method: 'delete',
+                    url: url + `${IdUsuarioAlm}`,
+                    reponseType: 'json',
+                    //data: arrayDatos
+
+                })
+                .then (res=>{
+                    console.log(res.data);
+                    location.href=`Empleados.html?IdUsuario=47&IdTipoUsuario=2`;
+                })
+                .catch (error=>{
+                    console.error(error);
+                });
+                }
+                </script>      
+        
     </div>
 </section>
 
-<body>
+<body onload="getInfo()">
     <div class="area"></div><nav class="main-menu">
           <ul>
-              <li>
-                  <a href="cuentaAdmin.html">
-                    <img class="circular--square" src="img/logochido.JPG" width="50px" height="50px" alt="">
-                      <i class="fa fa-home fa-2x"></i>
-                      <span class="nav-text">
-                          Layla
-                      </span>
-                  </a>
-                
-              </li>
-              <li class="has-subnav">
-                  <a href="index.html">
-                    <img class="nav-icon" src="img/logos/home.png" width="40px" height="40px" alt="">
-                      <i class="fa fa-laptop fa-2x"></i>
-                      <span class="nav-text">
-                      Tienda  
-                      </span>
-                  </a>
+            <li>
+                <a href="cuentaAdmin.html?IdUsuario=47&IdTipoUsuario=2">
+                  <img class="circular--square" src="img/logochido.JPG" width="50px" height="50px" alt="">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">
+                        Mi cuenta
+                    </span>
+                </a>
+              
+            </li>
+              <script>
                   
-              </li>
+                function backHome()
+                {
+                  const queryResults = window.location.search;
+                  console.log(queryResults);
+                  const urlParams = new URLSearchParams(queryResults);
+                  const idtipousuario = urlParams.get('IdTipoUsuario');
+                  const idusuario = urlParams.get('IdUsuario');
+                  ///boton de home
+                  var etiquetaA = document.createElement("a");
+                  etiquetaA.setAttribute("id", "cont-Ispan");
+                  etiquetaA.setAttribute("href", `index.html?IdUsuario=${idusuario}&IdTipoUsuario=${idtipousuario}`);
+                  var contenedor = document.getElementById("cont-bh");
+                  contenedor.appendChild(etiquetaA);
+                  var etiquetaImg = document.createElement("img");
+                  etiquetaImg.setAttribute("class", "nav-icon");
+                  etiquetaImg.setAttribute("src", "img/logos/home.png");
+                  etiquetaImg.setAttribute("width", "40px");
+                  etiquetaImg.setAttribute("height", "40px");
+                  etiquetaImg.setAttribute("alt", "");
+                  var contenedor = document.getElementById("cont-Ispan");
+                  contenedor.appendChild(etiquetaImg);
+                  var etiqueta = document.createElement("i");
+                  etiqueta.setAttribute("class", "fa fa-laptop fa-2x");
+                  var contenido = document.createTextNode("");
+                  etiqueta.appendChild(contenido);
+                  var contenedor = document.getElementById("cont-Ispan");
+                  contenedor.appendChild(etiqueta);
+                  var etiqueta = document.createElement("span");
+                  etiqueta.setAttribute("class", "nav-text");
+                  var contenido = document.createTextNode("Tienda");
+                  etiqueta.appendChild(contenido);
+                  var contenedor = document.getElementById("cont-Ispan");
+                  contenedor.appendChild(etiqueta);
+
+                  ///Boton para agregar un nuevo almacenista
+                  var etiquetaA = document.createElement("a");
+                  etiquetaA.setAttribute("id", "cont-alm");
+                  etiquetaA.setAttribute("href", `nAlmacenista.html?IdUsuario=${idusuario}&IdTipoUsuario=${idtipousuario}`);
+                  var contenedor = document.getElementById("add");
+                  contenedor.appendChild(etiquetaA);
+                  var etiquetaImg = document.createElement("img");
+                  etiquetaImg.setAttribute("class", "nav-icon");
+                  etiquetaImg.setAttribute("src", "img/logos/agregar.png");
+                  etiquetaImg.setAttribute("width", "40px");
+                  etiquetaImg.setAttribute("height", "40px");
+                  etiquetaImg.setAttribute("alt", "");
+                  var contenedor = document.getElementById("cont-alm");
+                  contenedor.appendChild(etiquetaImg);
+                  var etiqueta = document.createElement("i");
+                  etiqueta.setAttribute("class", "fa fa-laptop fa-2x");
+                  var contenido = document.createTextNode("");
+                  etiqueta.appendChild(contenido);
+                  var contenedor = document.getElementById("cont-alm");
+                  contenedor.appendChild(etiqueta);
+                  var etiqueta = document.createElement("span");
+                  etiqueta.setAttribute("class", "nav-text");
+                  var contenido = document.createTextNode("Agregar Almacenista");
+                  etiqueta.appendChild(contenido);
+                  var contenedor = document.getElementById("cont-alm");
+                  contenedor.appendChild(etiqueta);
+                }
+              </script>
+              <li id="cont-bh" class="has-subnav">
+                    
+            </li>
+            <li id="add" class="has-subnav">
+                    
+            </li>
             </li>
             <li class="has-subnav">
                 <a href="Empleados.html">
@@ -57,6 +235,8 @@
                 </a>
                 
             </li>
+
+        </li>
 
           <li class="logout">
                  <a href="iniciosesion.html">

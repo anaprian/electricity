@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <header class="header">
         <a href="index.html">
             <img class="header__logo" src="img/logochido.JPG" alt="Logo">
@@ -37,7 +38,46 @@
         <input class="control" type="password" name="contrasena" id="contrasena" placeholder="Clave">
         <label for="avatar">Elige una foto de perfil:</label>
         <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg">
-        <button class="boton" type="submit">Registrarme</button>
+        <button class="boton" type="button" onclick="RegisterUser()">Registrarme</button>
+        <script>
+        function RegisterUser()
+            {
+                let nombre = document.getElementById('nombre').value;
+                let apPaterno = document.getElementById('apellidoPaterno').value;
+                let apMaterno = document.getElementById('apellidoMaterno').value;
+                let correo = document.getElementById('correo').value;
+                let username = document.getElementById('nombreUsuario').value;
+                let password = document.getElementById('contrasena').value;
+                let arrayDatos = {
+                    Nombre: nombre = document.getElementById('nombre').value,
+                    Apellido: apPaterno = document.getElementById('apellidoPaterno').value +
+                     " " + document.getElementById('apellidoMaterno').value,
+                    Correo: correo = document.getElementById('correo').value,
+                    IdTipoUsuario: "1",
+                    NombreUsuario: username = document.getElementById('nombreUsuario').value,
+                    Contrasena: password = document.getElementById('contrasena').value,
+                    Imagen:"ing.jpg"////intercambiar mayusculas y minusculas
+                    
+                };
+                const url = `http://192.168.191.77:5000/registerUser/`;
+
+                    axios ({
+                    method: 'post',
+                    url: url,
+                    reponseType: 'json',
+                    data: arrayDatos
+                    
+                })
+                .then (res=>{
+                    console.log(res.data);
+                    location.href=`index.html?IdUsuario=${res.data.IdUsuario}&IdTipoUsuario=${res.data.IdTipoUsuario}`;
+                })
+                .catch (error=>{
+                    console.error(error);
+                });
+            }
+        </script>
+
         <p><a href="iniciosesion.html">¿Ya tienes una cuenta? Inicia sesión</a></p>
     </section>
     <footer class="footer">

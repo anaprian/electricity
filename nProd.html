@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/perfiles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <title>ElectriCity</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/formularios.css">
+</head>
+
+<body onload="getInfo()">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function getInfo() {
+            let queryResults = window.location.search;
+            console.log(queryResults);
+            let urlParams = new URLSearchParams(queryResults);
+           
+            let idusuario = localStorage.getItem('IdUsuario');
+            const url = `http://192.168.191.64:5000//api/v1/items/add/`;
+
+            axios({
+                method: 'GET',
+                url: url + `${idusuario}`,
+                reponseType: 'json',
+                //data: arrayDatos
+
+            })
+                .then(res => {
+                    console.log(res.data);
+                    //Input nombre producto
+                    var etiqueta = document.createElement("input");
+                    etiqueta.setAttribute("type", "text");
+                    etiqueta.setAttribute("class", "control");
+                    etiqueta.setAttribute("name", "Producto");
+                    etiqueta.setAttribute("id", "producto");
+                    etiqueta.setAttribute("value", `${res.data.Nombre}`);
+                    var contenido = document.createTextNode("");
+                    etiqueta.appendChild(contenido);
+                    var contenedor = document.getElementById("container-datos");
+                    contenedor.appendChild(etiqueta);
+                    //Input precio
+                    var etiqueta = document.createElement("input");
+                    etiqueta.setAttribute("type", "text");
+                    etiqueta.setAttribute("class", "control");
+                    etiqueta.setAttribute("name", "Precio");
+                    etiqueta.setAttribute("id", "precio");
+                    etiqueta.setAttribute("value", `${res.data.PrecioVenta}`);
+                    var contenido = document.createTextNode("");
+                    etiqueta.appendChild(contenido);
+                    var contenedor = document.getElementById("container-datos");
+                    contenedor.appendChild(etiqueta);
+                    /*<input class="control" type="text" name="Producto" id="producto" placeholder="Producto"> <br>
+                    <input class="control" type="text" name="Precio" id="precio" placeholder="Precio"> <br>
+                    <label for="avatar">Elige una foto:</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg">
+                    <input class="formulario__submit" type="submit" value="Guardar"> */
+                    //Input foto
+                    var etiqueta = document.createElement("input");
+                    etiqueta.setAttribute("type", "file");/* 
+                    etiqueta.setAttribute("class", "control"); */
+                    etiqueta.setAttribute("name", "avatar");/* 
+                    etiqueta.setAttribute("id", "correo"); */
+                    etiqueta.setAttribute("accept", "image/png, image/jpeg, image/jpg");
+                    var contenido = document.createTextNode("");
+                    etiqueta.appendChild(contenido);
+                    var contenedor = document.getElementById("container-datos");
+                    contenedor.appendChild(etiqueta);
+                    //Input precio
+                    var etiqueta = document.createElement("input");
+                    etiqueta.setAttribute("type", "text");
+                    etiqueta.setAttribute("class", "control");
+                    etiqueta.setAttribute("name", "Desc");
+                    etiqueta.setAttribute("id", "desc");
+                    etiqueta.setAttribute("value", `${res.data.Descripcion}`);
+                    var contenido = document.createTextNode("");
+                    etiqueta.appendChild(contenido);
+                    var contenedor = document.getElementById("container-datos");
+                    contenedor.appendChild(etiqueta);
+                    //Input precio
+                    var etiqueta = document.createElement("input");
+                    etiqueta.setAttribute("type", "text");
+                    etiqueta.setAttribute("class", "control");
+                    etiqueta.setAttribute("name", "Existencia");
+                    etiqueta.setAttribute("id", "existencia");
+                    etiqueta.setAttribute("value", `${res.data.Existencia}`);
+                    var contenido = document.createTextNode("");
+                    etiqueta.appendChild(contenido);
+                    var contenedor = document.getElementById("container-datos");
+                    contenedor.appendChild(etiqueta);
+                    //Input precio
+                    var etiqueta = document.createElement("input");
+                    etiqueta.setAttribute("type", "text");
+                    etiqueta.setAttribute("class", "control");
+                    etiqueta.setAttribute("name", "Marca");
+                    etiqueta.setAttribute("id", "marca");
+                    etiqueta.setAttribute("value", `${res.data.Marca}`);
+                    var contenido = document.createTextNode("");
+                    etiqueta.appendChild(contenido);
+                    var contenedor = document.getElementById("container-datos");
+                    contenedor.appendChild(etiqueta);
+                    //Input precio
+                    var etiqueta = document.createElement("input");
+                    etiqueta.setAttribute("type", "text");
+                    etiqueta.setAttribute("class", "control");
+                    etiqueta.setAttribute("name", "idArticulo");
+                    etiqueta.setAttribute("id", "idArticulo");
+                    etiqueta.setAttribute("value", `${res.data.idArticulo}`);
+                    var contenido = document.createTextNode("");
+                    etiqueta.appendChild(contenido);
+                    var contenedor = document.getElementById("container-datos");
+                    contenedor.appendChild(etiqueta);
+                    //Input precio
+                    var etiqueta = document.createElement("input");
+                    etiqueta.setAttribute("type", "text");
+                    etiqueta.setAttribute("class", "control");
+                    etiqueta.setAttribute("name", "Cat");
+                    etiqueta.setAttribute("id", "cat");
+                    etiqueta.setAttribute("value", `${res.data.idCategoriaDEArticulo}`);
+                    var contenido = document.createTextNode("");
+                    etiqueta.appendChild(contenido);
+                    var contenedor = document.getElementById("container-datos");
+                    contenedor.appendChild(etiqueta);
+                    //Input nombre de usuario
+                    var etiqueta = document.createElement("input");
+                    etiqueta.setAttribute("type", "submit");
+                    etiqueta.setAttribute("class", "formulario_submit");/* 
+                    etiqueta.setAttribute("name", "nombreusuario"); *//* 
+                    etiqueta.setAttribute("id", "nombreusuario"); */
+                    etiqueta.setAttribute("value", "Guardar");
+                    var contenido = document.createTextNode("");
+                    etiqueta.appendChild(contenido);
+                    var contenedor = document.getElementById("container-datos");
+                    contenedor.appendChild(etiqueta);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    </script>
+    <main class="contenedor">
+        <h1>Datos del producto</h1>
+        <div class="caja">
+            <div class="caja__contenido">
+                <br>
+                <section class="datos"><!-- 
+                    <input class="control" type="text" name="Producto" id="producto" placeholder="Producto"> <br>
+                    <input class="control" type="text" name="Precio" id="precio" placeholder="Precio"> <br>
+                    <label for="avatar">Elige una foto:</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg, image/jpg">
+                    <input class="formulario__submit" type="submit" value="Guardar"> -->
+                </section>
+                <br>
+            </div>
+        </div>
+    </main>
+
+    <body onload="getInfo()">
+        <div class="area"></div>
+        <nav class="main-menu">
+            <ul>
+               
+                <div id="container-datos"></div>
+                <button class="boton" type="button" onclick="UpdateUser()">Guardar cambios</button>
+                <script>
+                    function UpdateUser() {
+                        let queryResults = window.location.search;
+                        console.log(queryResults);
+                        let urlParams = new URLSearchParams(queryResults);
+                        let idusuario = urlParams.get('IdUsuarioAlm');
+                        let idtipousuario = urlParams.get('IdTipoUsuario');
+                        let nombre = document.getElementById('nombre').value;
+                        let apellidos = document.getElementById('apellidos').value;
+                        let correo = document.getElementById('correo').value;
+                        let username = document.getElementById('nombreusuario').value;
+                        let password = document.getElementById('contrasena').value;
+                        let arrayDatos = {
+                            Nombre: nombre = document.getElementById('nombre').value,
+                            Apellido: apellidos = document.getElementById('apellidos').value,
+                            Correo: correo = document.getElementById('correo').value,
+                            NombreUsuario: username = document.getElementById('nombreusuario').value,
+                            Contrasena: password = document.getElementById('contrasena').value,
+                            IdUsuario: idusuario
+
+                        };
+                        const url = `http://192.168.191.77:5000/UpdateUser/`;
+
+                        axios({
+                            method: 'patch',
+                            url: url,
+                            reponseType: 'json',
+                            data: arrayDatos
+
+                        })
+                            .then(res => {
+                                console.log(res.data);
+                                location.href = `Empleados.html?IdUsuario=47&IdTipoUsuario=2`;
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    }
+                </script>
+                <li id="cont-cuenta" class="has-subnav">
+
+                </li>
+                <li id="cont-bh" class="has-subnav">
+
+                </li>
+
+
+
+                <li id="add" class="has-subnav">
+
+                </li>
+                <li class="logout">
+                    <a href="iniciosesion.html">
+                        <img class="nav-icon" src="img/logos/logout.png" alt="">
+                        <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            Logout
+                        </span>
+                    </a>
+                </li>
+        </nav>
+    </body>
+    <footer class="footer">
+        <p class="footer__texto">ElectriCity- Todos los derechos reservados 2022.</p>
+    </footer>
+
+</body>
+
+</html>

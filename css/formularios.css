@@ -1,0 +1,39 @@
+
+.datos{
+    padding-left: 400px;
+}
+.formulario {
+    width: 40rem;
+    background: var(--secundario);
+    padding: 3rem;
+    margin: auto;
+    margin-top: 1rem;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    color: var(--negro)
+}
+
+
+.control {
+    width: 100%;
+    height: 20px;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.6rem;
+    border: 1px solid;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+
+.formulario a {
+    color: var(--blanco);
+}
+
+.formulario a:hover {
+    color: var(--negro);
+    text-decoration: underline;
+}
+
+
